@@ -4,6 +4,7 @@
     <string name="button">Тост</string>
     <string name="snack">Снэк</string>
     <string name="avatar">Avatar</string>
+    <string name="course_title_placeholder">%1$d курс</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
@@ -51,4 +52,7 @@
     <string name="HintEditText">Введите текст</string>
     <string name="shareBTNtext">Поделиться</string>
     <string name="sharebtn">ShareBTN</string>
+    <string name="indication">Индикатор формы</string>
+    <string name="indication2">Индикатор курса</string>
+    <string name="BtnToSchedText">Расписание групп</string>
 </resources>

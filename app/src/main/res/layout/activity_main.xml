@@ -65,9 +65,26 @@
         android:autofillHints="name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/buttonToSecond"
+        app:layout_constraintTop_toBottomOf="@id/btnToSched"
         android:hint="@string/HintEditText"
         android:inputType="text"
         />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="vertical"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btnToSched"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/BtnToSchedText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonToSecond"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
