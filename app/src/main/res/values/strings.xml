@@ -5,12 +5,10 @@
     <string name="snack">Снэк</string>
     <string name="avatar">Avatar</string>
     <string name="course_title_placeholder">%1$d курс</string>
-    <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
@@ -55,7 +53,9 @@
     <string name="indication">Индикатор формы</string>
     <string name="indication2">Индикатор курса</string>
     <string name="BtnToSchedText">Расписание групп</string>
-    <string name="schedule_select_group">Выбор группы</string>
+    <string name="title_form_edu">Форма обучения</string>
+    <string name="title_course">Курс</string>
+    <string name="title_group">Группа</string>
     <string name="schedule_empty">Расписание пока недоступно</string>
     <string name="schedule_load_error">Ошибка загрузки расписания</string>
     <string name="schedule_tree_error">Не удалось загрузить список групп</string>

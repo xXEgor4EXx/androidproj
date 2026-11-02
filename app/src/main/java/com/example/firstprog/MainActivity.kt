@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
         val btnToSched = findViewById<Button>(R.id.btnToSched)
         btnToSched.setOnClickListener {
-            startActivity(Intent(this, ScheduleActivity::class.java))
+            startActivity(Intent(this, FormEduActivity::class.java))
         }
     }
 }
