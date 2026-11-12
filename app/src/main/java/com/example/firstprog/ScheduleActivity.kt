@@ -55,12 +55,10 @@ class ScheduleActivity : AppCompatActivity() {
                 val response = RetrofitClient.api.getGroupSchedule(groupId)
                 progressBar.visibility = View.GONE
 
-                val allEntries = response.months.flatMap { month ->
-                    month.entries.map { entry -> "${month.name}: $entry" }
-                }
+                val allDays = response.months.flatMap { it.sched }.filter { it.lessons.isNotEmpty() }
 
-                if (allEntries.isNotEmpty()) {
-                    rvSchedule.adapter = SelectionAdapter(allEntries) { }
+                if (allDays.isNotEmpty()) {
+                    rvSchedule.adapter = ScheduleDayAdapter(allDays)
                     rvSchedule.visibility = View.VISIBLE
                     tvEmpty.visibility = View.GONE
                 } else {
