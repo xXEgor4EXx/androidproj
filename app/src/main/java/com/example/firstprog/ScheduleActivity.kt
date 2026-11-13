@@ -11,9 +11,15 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.firstprog.network.DaySchedule
 import com.example.firstprog.network.RetrofitClient
 import com.google.android.material.appbar.MaterialToolbar
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+import androidx.recyclerview.widget.LinearSmoothScroller
+
 
 class ScheduleActivity : AppCompatActivity() {
 
@@ -27,7 +33,6 @@ class ScheduleActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
         val groupId = intent.getIntExtra("EXTRA_GROUP_ID", -1)
         val groupName = intent.getStringExtra("EXTRA_GROUP_NAME") ?: ""
 
@@ -55,12 +60,14 @@ class ScheduleActivity : AppCompatActivity() {
                 val response = RetrofitClient.api.getGroupSchedule(groupId)
                 progressBar.visibility = View.GONE
 
-                val allDays = response.months.flatMap { it.sched }.filter { it.lessons.isNotEmpty() }
+                val allDays =
+                    response.months.flatMap { it.sched }.filter { it.lessons.isNotEmpty() }
 
                 if (allDays.isNotEmpty()) {
                     rvSchedule.adapter = ScheduleDayAdapter(allDays)
                     rvSchedule.visibility = View.VISIBLE
                     tvEmpty.visibility = View.GONE
+                    scrollToToday(rvSchedule, allDays)
                 } else {
                     tvEmpty.text = getString(R.string.schedule_empty)
                     tvEmpty.visibility = View.VISIBLE
@@ -74,4 +81,20 @@ class ScheduleActivity : AppCompatActivity() {
             }
         }
     }
+    private fun scrollToToday(recyclerView: RecyclerView, days: List<DaySchedule>) {
+        val sdf = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
+        val todayString = sdf.format(Date())
+        val todayIndex = days.indexOfFirst { it.datePair.trim() == todayString }
+
+        if (todayIndex != -1) {
+            recyclerView.post {
+                val smoothScroller = object : LinearSmoothScroller(recyclerView.context) {
+                    override fun getVerticalSnapPreference(): Int = SNAP_TO_START
+                }
+                smoothScroller.targetPosition = todayIndex
+                recyclerView.layoutManager?.startSmoothScroll(smoothScroller)
+            }
+        }
+    }
 }
+
